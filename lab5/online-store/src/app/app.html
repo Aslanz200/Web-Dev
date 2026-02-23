@@ -1,0 +1,24 @@
+<div class="store-header">
+  <h1>🛒 Online Store</h1>
+  <p>Browse products by category</p>
+</div>
+
+<div class="category-bar">
+  @for (category of categories; track category.id) {
+    <button
+      class="category-btn"
+      [class.active]="selectedCategory?.id === category.id"
+      (click)="selectCategory(category)"
+    >
+      {{ category.name }}
+    </button>
+  }
+</div>
+
+@if (selectedCategory === null) {
+  <div class="welcome">
+    <p>👆 Select a category above to browse products</p>
+  </div>
+} @else {
+  <app-product-list [products]="filteredProducts" />
+}
